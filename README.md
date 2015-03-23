@@ -150,7 +150,7 @@ Compass vertical rythm.
 
 Example:
 
-```
+```scss
 /*--- usage: ---*/
 padding: rem(2) rem(1);
 
