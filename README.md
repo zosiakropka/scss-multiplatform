@@ -81,6 +81,16 @@ To clarify, only ``min-width`` values that are smaller than or equal to
 ``$desktop-width`` are included. Only ``width`` of value ``$desktop-width``
 is included.
 
+Fixed layout is not dedicated to use on IE lt 9 platforms, since it uses
+``rem`` units. For IE lt 9 please use IE8 layout. As it utilizes ``rem``
+units, it should be linked as:
+
+```html
+<!--[if (gt IE 8) | (IEMobile)]><!-->
+	<link rel="stylesheet" href="css/fixed.css" />
+<!--<![endif]-->
+```
+
 ### 3. IE8 layout
 
 ```scss
@@ -96,7 +106,15 @@ This layout is nearly the same as the fixed layout, however it provides one
 with a rem() fallback function. Read more in the **3.1 @function rem()**
 section.
 
-### 3. Mobile layout
+This layout might be linked with following statement:
+
+```html
+<!--[if (lt IE 9) & (!IEMobile)]>
+	<link rel="stylesheet" href="css/ie8.css" />
+<![endif]-->
+```
+
+### 4. Mobile layout
 
 ```scss
 /*--- scss/mobile.scss ---*/
@@ -108,7 +126,14 @@ $desktop-width: 1024px;
 ```
 
 This layout does not create CSS for viewports wider than $desktop-width.
-Otherwise it's responsive.
+Except that fact the following layout may be responsive and use media queries.
+Because of the media queries used, it should be linked as:
+
+```html
+<!--[if (gt IE 8) | (IEMobile)]><!-->
+	<link rel="stylesheet" href="css/mobile.css" />
+<!--<![endif]-->
+```
 
 3. Utils
 --------
@@ -139,3 +164,37 @@ padding: 32px 16px;
 Media queries
 -------------
 
+Media queries should be created as follows:
+
+``width`` media query:
+
+```scss
+@include width(768px) {
+	body {
+		background-color: red;
+	}
+}
+```
+
+``min-width`` media query:
+
+```scss
+@include min-width(768px) {
+	.content {
+		width: 600px;
+	}
+}
+```
+
+``max-width`` media query:
+
+```scss
+@include max-width(768px) {
+	.content {
+		margin: 20px;
+	}
+}
+```
+
+Those mixins will output diffrent CSS per layout, as described in the
+section 2. Layouts.
