@@ -54,7 +54,7 @@ Output stylesheet might be linked as:
 
 ```html
 <!--[if (gt IE 8) | (IEMobile)]><!-->
-	<link rel="stylesheet" href="{% static "webapp/css/style.css" %}" />
+	<link rel="stylesheet" href="css/responsive.css" />
 <!--<![endif]-->
 ```
 
