@@ -1,0 +1,68 @@
+
+@mixin width($value) {
+	@if ($layout == "mobile") {
+		@if ($value < $desktop-width) {
+			@media (min-width: $value) {
+				@content;
+			}
+		}
+	} @else if ($layout == "fixed") {
+		@if ($value == $desktop-width) {
+			@content;
+		}
+	} @else { // $layout == "responsive"
+		@media (width: $value) {
+			@content;
+		}
+	}
+}
+
+@mixin min-width($value) {
+	@if ($layout == "mobile") {
+		@if ($value < $desktop-width) {
+			@media (min-width: $value) {
+				@content;
+			}
+		}
+	} @else if ($layout == "fixed") {
+		@if ($value <= $desktop-width) {
+			@content;
+		}
+	} @else { // $layout == "responsive"
+		@media (min-width: $value) {
+			@content;
+		}
+	}
+}
+
+@mixin max-width($value) {
+	@if ($layout == "mobile") {
+		@if ($value >= $desktop-width) {
+			@content;
+		}
+	} @else if ($layout == "fixed") {
+		@if ($value >= $desktop-width) {
+			@content;
+		}
+	} @else { // $layout == "responsive"
+		@media (max-width: $value) {
+			@content;
+		}
+	}
+}
+
+@mixin min-height ($value) {
+	@if (not $ie8) {
+		@media (min-width: value) {
+			@content;
+		}
+	}
+}
+
+@mixin max-height ($value) {
+	@if (not $ie8) {
+		@media (max-width: value) {
+			@content;
+		}
+	}
+}
